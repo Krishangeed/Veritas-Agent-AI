@@ -9,7 +9,7 @@ def deepcheck_chat_reply(messages, score: float | None = None) -> str:
     """Uses free Groq Llama model for real responses."""
     
     system_prompt = (
-        "You are DeepCheck, a cold and analytical forensic intelligence system. "
+        "You are Veritas Agent, a cold and analytical forensic intelligence system. "
         "Your tone is factual, concise, and objective. "
         "You analyze deepfake credibility and explain forensic indicators clearly."
     )
@@ -29,7 +29,7 @@ def deepcheck_chat_reply(messages, score: float | None = None) -> str:
 
 
 st.set_page_config(
-    page_title="DeepCheck — Deepfake Detector",
+    page_title="Veritas Agent — Deepfake Intelligence Console",
     layout="wide"
 )
 
@@ -316,7 +316,7 @@ header_html = """
         letter-spacing: 4px;
         text-shadow: 0px 0px 18px rgba(0,247,255,0.9);
     ">
-        DEEPCHECK
+        VERITAS AGENT
     </h1>
     <p style="
         font-family: 'Montserrat', sans-serif;
@@ -344,7 +344,7 @@ st.markdown("""
 # =========================
 st.sidebar.markdown("""
 <div style="font-family:Montserrat; font-size:14px; line-height:1.7; color:#e9efff;">
-<span style="font-size:16px; font-weight:600; color:#7ef7ff;">⚙ DeepCheck HUD</span><br><br>
+<span style="font-size:16px; font-weight:600; color:#7ef7ff;"> Veritas Agent HUD</span><br><br>
 1️⃣ <b>Upload</b> a short video (mp4 / mov / avi).<br>
 2️⃣ <b>(Optional)</b> enter a question about the clip.<br>
 3️⃣ Hit <b>Run Deepfake Analysis</b> to start the engine.<br>
@@ -426,9 +426,9 @@ with col2:
                     st.caption("Later, the agent's answer to this query will appear here.")
 
 # =========================
-# Chatbot – DeepCheck Assistant
+# Chatbot – Veritas Agent Assistant
 # =========================
-st.markdown("## 💬 DeepCheck Assistant")
+st.markdown("## 💬 Veritas Agent Assistant")
 
 # Init chat history once
 if "chat_history" not in st.session_state:
@@ -446,7 +446,7 @@ for msg in st.session_state.chat_history:
     else:
         bubble_color = "rgba(255,255,255,0.10)"
         align = "flex-end"
-        label = "DeepCheck"
+        label = "Veritas Agent"
 
     st.markdown(
         f"""
@@ -471,7 +471,7 @@ st.markdown("---")
 
 # --- Input row (ask question here) ---
 user_msg = st.text_input(
-    "Ask DeepCheck something about deepfakes, this video, or the analysis:",
+    "Ask Veritas Agent something about deepfakes, this video, or the analysis:",
     key="chat_input",
 )
 
@@ -521,7 +521,7 @@ with history_expander:
         st.caption("No messages yet. Conversation log will appear here.")
     else:
         for i, msg in enumerate(st.session_state.chat_history, start=1):
-            role_label = "Operator" if msg["role"] == "user" else "DeepCheck"
+            role_label = "Operator" if msg["role"] == "user" else "Veritas Agent"
             st.markdown(f"**{i}. {role_label}:** {msg['content']}")
 
 
@@ -533,4 +533,4 @@ st.caption(
     "⚠ Prototype console. Deepfake scores and explanations are placeholders "
     "until the final detection model is integrated."
 )
-st.caption("Built by Team DeepCheck")
+st.caption("Built by Team Veritas")
