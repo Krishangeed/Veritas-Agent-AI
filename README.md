@@ -1,43 +1,36 @@
-# DeepCheck — Deepfake Detection UI
+# 🧠 Veritas Agent — Deepfake Detection Assistant
 
-DeepCheck is a neural forensics console built with Streamlit for exploring video authenticity and deepfake credibility.
-
-This repo contains the **frontend + UX layer**:
-- Video upload & preview interface  
-- “Run Deepfake Analysis” workflow (currently using placeholder model output)
-- DeepCheck Assistant: a chat-style AI panel for asking questions about deepfakes / the analysis
-- Small demo video set for quick testing
-
-> Backend deepfake detection models (CV / intent / LLM backends) are handled in separate modules by teammates.
+Veritas Agent is an AI-powered forensic system that helps users verify the authenticity of videos. It provides a credibility score and natural-language explanations rather than just returning “real” or “fake.”
 
 ---
 
-## 🔧 Features
+### Why It Matters
 
-- 🎥 **Video uploader + preview**  
-  Upload MP4 / MOV / AVI / MKV videos and preview them directly in the UI.
-
-- 📊 **Analysis panel (placeholder)**  
-  Button-driven analysis flow with a credibility score + status text.  
-  Currently wired to a fake score for demo; ready to be connected to a real model.
-
-- 🤖 **DeepCheck Assistant (chatbot)**  
-  Chat-style interface that:
-  - Keeps conversation history in the session
-  - Sends messages to an LLM backend (via Groq API)
-  - Can be extended to answer questions about the uploaded clip or model output
-
-- 📂 **Demo video directory**  
-  `demo_videos/test_real.mp4` and `demo_videos/test_fake.mp4` included for UI testing.
+Deepfakes are becoming more accessible and harder to detect. Existing tools are often technical, inaccessible, or provide no reasoning. Veritas Agent bridges the gap with a user-friendly forensic assistant.
 
 ---
 
-## 📁 Project structure
+### How It Works
 
-```text
-deepcheck/
-├─ app.py              # Main Streamlit app (UI + chatbot + analysis flow)
-├─ requirements.txt    # Python dependencies
-└─ demo_videos/
-   ├─ test_real.mp4    # Sample "real" video for demo
-   └─ test_fake.mp4    # Sample "fake" video for demo
+1. User uploads or selects a demo video  
+2. Frames and faces are extracted  
+3. Deepfake models (MesoNet/XceptionNet) run classification  
+4. An AI assistant explains results in a readable format  
+
+---
+
+### Tech Stack
+
+- **Streamlit** (Frontend)
+- **OpenCV + MTCNN** (Face/Frame processing)
+- **PyTorch (MesoNet/XceptionNet)** (Deepfake Models)
+- **Scikit-learn** (Intent classification)
+- **Groq / Hugging Face / OpenAI / Gemini** (LLM explanation)
+
+---
+
+### Run Locally
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
