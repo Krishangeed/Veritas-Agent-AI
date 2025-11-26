@@ -380,7 +380,7 @@ with col2:
         if uploaded is None:
             st.warning("Please upload a video before analyzing.")
         else:
-            # Circular scanner + AI running label
+        # --- scanner HTML ---
             scanner_html = """
             <div class="scanner-wrapper">
                 <div class="scanner-ring">
@@ -397,12 +397,23 @@ with col2:
                 </div>
             </div>
             """
+
+            # 🔹 create a temporary placeholder for the scanner
+            scanner_placeholder = st.empty()
+
             with st.spinner("Analyzing video..."):
-                st.markdown(scanner_html, unsafe_allow_html=True)
-                time.sleep(4)  # simulate heavy model
+                # render scanner only inside this placeholder
+                with scanner_placeholder.container():
+                    st.markdown(scanner_html, unsafe_allow_html=True)
 
-            fake_score = 12.5  # placeholder
+                # TODO: replace this with real model call
+                time.sleep(4)
 
+            # 🔹 remove the scanner once analysis is done
+            scanner_placeholder.empty()
+
+            # now show final results
+            fake_score = 12.5  # placeholder score
             st.success("Analysis complete!")
 
             result_box = st.container()
